@@ -1,6 +1,7 @@
 "use client";
 
 import { metadata } from "@/app/metadata";
+import { options } from "@/app/video/video-options";
 import { Tabs, TabsProps } from "antd";
 import Title from "antd/es/typography/Title";
 import Link from "next/link";
@@ -17,22 +18,21 @@ export default function Header() {
 
   const items: TabsProps["items"] = [
     {
-      key: "home",
+      key: "/",
       label: "Home",
-      active: pathname === "/",
+    },
+    {
+      key: options[0].value,
+      label: "Video",
     },
   ];
 
   const handleChange = (key: string) => {
-    if (key === "home") {
-      router.push("/");
-    } else {
-      router.push(`/${key}`);
-    }
+    router.push(key);
   };
 
   return (
-    <header>
+    <header className="layout">
       <Link href="/" className="flex items-center pt-4">
         <Title>{metadata.title as string}</Title>
       </Link>
@@ -40,7 +40,7 @@ export default function Header() {
         <Tabs
           items={items}
           onChange={handleChange}
-          defaultActiveKey={pathname.substring(1)}
+          defaultActiveKey={pathname}
         />
       </nav>
     </header>

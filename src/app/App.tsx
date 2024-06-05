@@ -18,9 +18,7 @@ export default function App({
       <AntdApp>
         <AntdRegistry>
           <Header />
-          <main className="max-w-screen-md mx-auto flex flex-col gap-4">
-            {children}
-          </main>
+          {children}
         </AntdRegistry>
       </AntdApp>
     </AntdConfigProvider>
